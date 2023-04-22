@@ -1,5 +1,4 @@
-**Assignment :- 
-**
+**Assignment :-**
 Start an nginx container
 
 Port forward to local and check
