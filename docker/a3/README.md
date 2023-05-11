@@ -1,0 +1,25 @@
+Assignment :-
+create multi-stage build and run dockerfile for go application
+- Stage 1: build
+- Stage 2: run
+
+Solution :-
+create multistage dockerfile
+
+FROM golang:alpine AS buildgolangapp
+WORKDIR /app
+COPY . /app/
+RUN go install -v ./...
+RUN go build -o golangapp
+
+
+FROM alpine:latest
+WORKDIR /app
+COPY --from=buildgolangapp /app/golangapp /app
+EXPOSE 8081
+CMD ["./golangapp"]
+
+
+run the container
+docker run -d -p 8081:8080 golang_multistage
+[verify that the we are able to get the output by [curl http://localhost:8081/]]
