@@ -3,8 +3,6 @@ WORKDIR /app
 COPY . /app/
 RUN go install -v ./...
 RUN go build -o golangapp
-
-
 FROM alpine:latest
 WORKDIR /app
 COPY --from=buildgolangapp /app/golangapp /app
